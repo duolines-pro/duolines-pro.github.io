@@ -1,16 +1,19 @@
 Privacy Policy for DuoLines
-Last updated: Ferbruary 24, 2026
+Last updated: February 24, 2026
 
-1. Information Collection 
-DuoLines collects the user-provided API Key (if applicable) and UI theme preferences (font sizes, colors, layout choices). These are stored locally on the user's device using chrome.storage.local.
+1. Information Collection
+DuoLines collects user-provided settings, such as translation language preferences, UI theme choices, and personal API keys/Google Apps Script URLs. This data is stored locally on the user's device using chrome.storage.
 
-2. Use of Information 
-The API Key is used solely to authenticate and process text translations via the user's selected translation provider or Google Apps Script. We do not transmit this key to any third party except the service URL requested by the user.
+2. Use of Information
+The collected information is used solely to facilitate the translation process and provide a consistent user interface. Text content selected by the user for translation is sent to the designated translation service (e.g., Google Apps Script) and is processed in real-time.
 
-3. Data Storage 
-All data, including translation history and text context, is processed dynamically and stored locally in the browser. We do not have access to your browsing history, personal files, or identity.
+3. Data Storage and Security
+We do not store your personal identity, browsing history, or translated content on our servers. All processing happens in the browser or via the user's chosen API endpoint.
 
-4. Changes to This Policy 
-We may update our Privacy Policy from time to time to reflect new features or regulations.
+4. Third-Party Services
+When using the translation feature, selected text is transmitted to Google services. Please refer to Google’s Privacy Policy for more information on how they handle data.
+
+5. Changes to This Policy
+We may update our Privacy Policy from time to time. Users are encouraged to check this page for any changes.
 
 Contact: duolinesmail@gmail.com
