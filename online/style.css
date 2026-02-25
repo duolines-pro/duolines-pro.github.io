@@ -1,0 +1,76 @@
+:root {
+    --bg-body: #050505; --bg-panel: #111; --border: #222;
+    --text-main: #eee; --text-dim: #888; --input-bg: #1a1a1a;
+    --accent: #ccff00;
+}
+
+body.theme-light {
+    --bg-body: #f0f0f0; --bg-panel: #ffffff; --border: #ccc;
+    --text-main: #222; --text-dim: #555; --input-bg: #f9f9f9;
+}
+
+/* UI Accent Colors */
+body.ui-blue { --accent: #00e5ff; }
+body.ui-amber { --accent: #ffab00; }
+body.ui-neon { --accent: #ccff00; }
+body.ui-purple-dark { --accent: #bf00ff; }
+body.ui-lava-dark { --accent: #ff3d00; }
+body.ui-emerald-dark { --accent: #00e676; }
+body.ui-royal-light { --accent: #2962ff; }
+body.ui-berry-light { --accent: #c2185b; }
+body.ui-ocean-light { --accent: #00695c; }
+body.ui-white-dark { --accent: #707b7c; }
+body.ui-black-white { --accent: #bdc3c7; }
+
+/* Fonturi specifice pentru box-ul de traducere */
+.f-sans { font-family: 'Segoe UI', sans-serif !important; }
+.f-serif { font-family: 'Georgia', serif !important; }
+.f-mono { font-family: 'Consolas', monospace !important; }
+
+body { background: var(--bg-body); color: var(--text-main); margin: 0; padding: 8px; height: 100vh; overflow: hidden; transition: 0.2s; font-family: sans-serif; }
+.main-wrapper { display: flex; flex-direction: column; gap: 6px; height: 100%; }
+
+.main-header { display: flex; align-items: center; gap: 12px; background: var(--bg-panel); padding: 8px 15px; border-radius: 8px; border: 1px solid var(--border); }
+.logo { font-size: 1.1rem; margin: 0; color: var(--accent); font-weight: bold; }
+.url-zone { flex-grow: 1; }
+#targetUrl { width: 99%; padding: 7px 12px; background: var(--input-bg); border: 1px solid var(--border); color: var(--text-main); border-radius: 4px; }
+
+.dr-btn-icon { background: var(--input-bg); border: 1px solid var(--border); color: var(--text-main); cursor: pointer; border-radius: 4px; padding: 5px 10px; }
+
+.process-section { background: var(--bg-panel); border: 1px solid var(--border); padding: 8px 12px; border-radius: 8px; }
+.compact-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.section-label { font-weight: bold; font-size: 0.7rem; color: var(--text-dim); min-width: 80px; }
+
+/* TEXTAREA REPARAT (Light/Dark + Inaltime) */
+textarea {
+    width: 100%; height: 120px; /* Inaltime marita */
+    background: var(--input-bg); color: var(--text-main);
+    border: 1px solid var(--border); font-family: monospace; font-size: 12px;
+    margin-top: 8px; resize: none; border-radius: 4px; padding: 10px; box-sizing: border-box;
+}
+
+select, button { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--border); padding: 5px; border-radius: 4px; font-size: 11px; }
+button { background: var(--accent); color: #000; font-weight: bold; border: none; padding: 5px 12px; cursor: pointer; }
+button:disabled { opacity: 0.2; cursor: not-allowed; }
+.btn-danger { background: #ff4444 !important; color: #fff !important; }
+.btn-warn { background: #ffaa00 !important; color: #000 !important; }
+
+.mini-progress { flex-grow: 1; height: 10px; background: var(--bg-body); border-radius: 5px; position: relative; border: 1px solid var(--border); min-width: 80px; overflow: hidden; }
+.progress-bar { height: 100%; background: var(--accent); width: 0%; transition: 0.3s; }
+.mini-progress span { position: absolute; right: 5px; top: -1px; font-size: 9px; font-weight: bold; color: var(--text-main); }
+
+.log-container { flex-grow: 1; background: var(--bg-body); border: 1px solid var(--border); overflow-y: auto; border-radius: 8px; margin-top: 4px; }
+.log-entry { display: flex; padding: 12px 15px; border-bottom: 1px solid var(--border); transition: 0.3s; }
+.log-bar { color: var(--accent); margin-right: 15px; font-weight: bold; font-size: 1.2rem; }
+.log-orig { font-size: 1.15rem; margin-bottom: 4px; font-weight: 500; }
+.log-trans { color: var(--text-dim); font-style: italic; font-size: 1rem; }
+
+.terminal-footer { display: flex; justify-content: space-between; padding: 6px 15px; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 4px; margin-top: 4px; }
+#termStatus {
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+display: inline-block;
+max-width: 250px;
+vertical-align: bottom;
+}

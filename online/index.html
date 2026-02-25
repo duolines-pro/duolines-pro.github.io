@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoLines Web Study Tool - extracted and create interlinear translated text of web-pages</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark ui-neon">
+    <div class="main-wrapper">
+        <header class="main-header">
+            <h1 class="logo">DuoLines Web 3.0</h1>
+            <div class="global-tools">
+                <button id="color-btn" class="dr-btn-icon" title="Interface color">🎨</button>
+                <button id="theme-btn" class="dr-btn-icon" title="Light/Dark">🌓</button>
+                <button id="btn-reset" class="dr-btn-icon" title="Reset">🔄</button>
+            </div>
+            <div class="url-zone">
+                <input type="url" id="targetUrl" placeholder="1. Paste web-link adress..." onclick="this.select()">
+            </div>
+
+        </header>
+
+        <div class="process-section">
+            <div class="compact-row">
+                <span class="section-label">2. Extract text from web-page link:</span>
+                <div class="btn-group">
+                    <button id="extStart">START</button>
+                    <button id="extPause" class="btn-warn" disabled>PAUSE</button>
+                    <button id="extStop" class="btn-danger" disabled>STOP</button>
+                    <button id="extSaveTxt" title="Salvează textul extras">💾 Save Extraction</button>
+                </div>
+                <div class="mini-progress">
+                    <div id="extProgress" class="progress-bar"></div>
+                    <span id="extPerc">0%</span>
+                </div>
+            </div>
+            <textarea id="extractedText" placeholder="Status proces: Paste web-page link..."></textarea>
+        </div>
+
+        <div class="process-section">
+            <div class="compact-row">
+                <span class="section-label">3. Translate extacted text:</span>
+                <select id="parseMode">
+    <option value="full">☰ Full Lines</option>
+    <option value="sentences">◈ Sentences</option>
+    <option value="logical">▤ Logical Groups</option>
+    <option value="word">単 Word by Word</option>
+                </select>
+                <select id="langTarget">
+    <option value="af">Afrikaans</option>
+    <option value="sq">Albanian (Shqip)</option>
+    <option value="am">Amharic (አማርኛ)</option>
+    <option value="ar">Arabic (العربية)</option>
+    <option value="hy">Armenian (Հայերեն)</option>
+    <option value="as">Assamese (অসমীয়া)</option>
+    <option value="ay">Aymara (Aymar aru)</option>
+    <option value="az">Azerbaijani (Azərbaycan)</option>
+    <option value="bm">Bamanankan</option>
+    <option value="eu">Basque (Euskara)</option>
+    <option value="be">Belarusian (Беларуская)</option>
+    <option value="bn">Bengali (বাংলা)</option>
+    <option value="bho">Bhojpuri (भोजपुरी)</option>
+    <option value="bs">Bosnian (Bosanski)</option>
+    <option value="bg">Bulgarian (Български)</option>
+    <option value="ca">Catalan (Català)</option>
+    <option value="ceb">Cebuano</option>
+    <option value="zh-CN">Chinese Simp (简体中文)</option>
+    <option value="zh-TW">Chinese Trad (繁體中文)</option>
+    <option value="co">Corsican (Corse)</option>
+    <option value="hr">Croatian (Hrvatski)</option>
+    <option value="cs">Czech (Čeština)</option>
+    <option value="da">Danish (Dansk)</option>
+    <option value="dv">Divehi (Dhivehi)</option>
+    <option value="doi">Dogri (डोगри)</option>
+    <option value="nl">Dutch (Nederlands)</option>
+    <option value="en">English</option>
+    <option value="eo">Esperanto</option>
+    <option value="et">Estonian (Eesti)</option>
+    <option value="ee">Ewe (Eʋegbe)</option>
+    <option value="fil">Filipino</option>
+    <option value="fi">Finnish (Suomi)</option>
+    <option value="fr">French (Français)</option>
+    <option value="fy">Frisian (Frysk)</option>
+    <option value="gl">Galician (Galego)</option>
+    <option value="ka">Georgian (ქართული)</option>
+    <option value="de">German (Deutsch)</option>
+    <option value="el">Greek (Ελληνικά)</option>
+    <option value="gn">Guarani (Avañe'ẽ)</option>
+    <option value="gu">Gujarati (ગુજરાતી)</option>
+    <option value="ht">Haitian Creole (Kreyòl ayisyen)</option>
+    <option value="ha">Hausa</option>
+    <option value="haw">Hawaiian (ʻŌlelo Hawaiʻi)</option>
+    <option value="he">Hebrew (עבריት)</option>
+    <option value="hi">Hindi (हिन्दी)</option>
+    <option value="hmn">Hmong (Hmoob)</option>
+    <option value="hu">Hungarian (Magyar)</option>
+    <option value="is">Icelandic (Íslenska)</option>
+    <option value="ig">Igbo</option>
+    <option value="ilo">Ilocano</option>
+    <option value="id">Indonesian (Indonesia)</option>
+    <option value="ga">Irish (Gaeilge)</option>
+    <option value="it">Italian (Italiano)</option>
+    <option value="ja">Japanese (日本語)</option>
+    <option value="jv">Javanese (Jawa)</option>
+    <option value="kn">Kannada (ಕನ್ನಡ)</option>
+    <option value="kk">Kazakh (Qazaq)</option>
+    <option value="km">Khmer (ខ្មែរ)</option>
+    <option value="rw">Kinyarwanda</option>
+    <option value="ko">Korean (한국어)</option>
+    <option value="kri">Krio</option>
+    <option value="ku">Kurdish (Kurdî)</option>
+    <option value="ky">Kyrgyz (Кыргызча)</option>
+    <option value="lo">Lao (ລາວ)</option>
+    <option value="la">Latin (Latina)</option>
+    <option value="lv">Latvian (Latviešu)</option>
+    <option value="ln">Lingala</option>
+    <option value="lt">Lithuanian (Lietuvių)</option>
+    <option value="lg">Luganda</option>
+    <option value="lb">Luxembourgish (Lëtzebuergesch)</option>
+    <option value="mk">Macedonian (Македонски)</option>
+    <option value="mai">Maithili (मैथिली)</option>
+    <option value="mg">Malagasy</option>
+    <option value="ms">Malay (Melayu)</option>
+    <option value="ml">Malayalam (മലയാളം)</option>
+    <option value="mt">Maltese (Malti)</option>
+    <option value="mi">Maori (Māori)</option>
+    <option value="mr">Marathi (मराठी)</option>
+    <option value="mni-Mtei">Meiteilon (Manipuri)</option>
+    <option value="lus">Mizo</option>
+    <option value="mn">Mongolian (Монгол)</option>
+    <option value="my">Myanmar (Burmese)</option>
+    <option value="ne">Nepali (नेपाली)</option>
+    <option value="no">Norwegian (Norsk)</option>
+    <option value="ny">Nyanja (Chichewa)</option>
+    <option value="or">Odia (Oriya)</option>
+    <option value="om">Oromo (Oromoo)</option>
+    <option value="ps">Pashto (پښتو)</option>
+    <option value="fa">Persian (فارسی)</option>
+    <option value="pl">Polish (Polski)</option>
+    <option value="pt">Portuguese (Português)</option>
+    <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
+    <option value="qu">Quechua</option>
+    <option value="ro">Romanian (Română)</option>
+    <option value="ru"selected>Russian (Русский)</option>
+    <option value="sm">Samoan</option>
+    <option value="sa">Sanskrit (संस्कृतम्)</option>
+    <option value="gd">Scots Gaelic (Gàidhlig)</option>
+    <option value="nso">Sepedi</option>
+    <option value="sr">Serbian (Српски)</option>
+    <option value="st">Sesotho</option>
+    <option value="sn">Shona (ChiShona)</option>
+    <option value="sd">Sindhi (سنڌي)</option>
+    <option value="si">Sinhala (සිංහල)</option>
+    <option value="sk">Slovak (Slovenčina)</option>
+    <option value="sl">Slovenian (Slovenščina)</option>
+    <option value="so">Somali (Soomaali)</option>
+    <option value="es">Spanish (Español)</option>
+    <option value="su">Sundanese (Basa Sunda)</option>
+    <option value="sw">Swahili (Kiswahili)</option>
+    <option value="sv">Swedish (Svenska)</option>
+    <option value="tg">Tajik (Тоҷикӣ)</option>
+    <option value="ta">Tamil (தமிழ்)</option>
+    <option value="tt">Tatar (Tatarça)</option>
+    <option value="te">Telugu (తెలుగు)</option>
+    <option value="th">Thai (ไทย)</option>
+    <option value="ti">Tigrinya (ትግርኛ)</option>
+    <option value="ts">Tsonga (Xitsonga)</option>
+    <option value="tr">Turkish (Türkçe)</option>
+    <option value="tk">Turkmen (Türkmençe)</option>
+    <option value="ak">Twi</option>
+    <option value="uk">Ukrainian (Українська)</option>
+    <option value="ur">Urdu (اردو)</option>
+    <option value="ug">Uyghur (ئۇيغۇرჩە)</option>
+    <option value="uz">Uzbek (Oʻzbek)</option>
+    <option value="vi">Vietnamese (Tiếng Việt)</option>
+    <option value="cy">Welsh (Cymraeg)</option>
+    <option value="xh">Xhosa (isiXhosa)</option>
+    <option value="yi">Yiddish (ייִדיշ)</option>
+    <option value="yo">Yoruba (Èdè Yorùbá)</option>
+    <option value="zu">Zulu (isiZulu)</option>
+</select>
+                <select id="fontSwitch" title="Change Font type on translated text">
+                    <option value="f-sans">Sans (modern)</option>
+                    <option value="f-serif">Serif (book)</option>
+                    <option value="f-mono">Mono (code)</option>
+                </select>
+                <div class="btn-group">
+                    <button id="transStart">START</button>
+                    <button id="transPause" class="btn-warn" disabled>PAUSE</button>
+                    <button id="transStop" class="btn-danger" disabled>STOP</button>
+                    <button id="transSaveTxt" title="Salvează traducerea">💾 Save Translation</button>
+                </div>
+                <div class="mini-progress">
+                    <div id="transProgress" class="progress-bar"></div>
+                    <span id="transPerc">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="log-container">
+            <div id="boxLog" class="log-content f-sans"></div>
+        </div>
+
+        <div class="terminal-footer">
+            <div class="terminal-box">
+                <span class="term-prompt">SYS:~$</span>
+                <span id="termStatus">READY</span>
+            </div>
+            <button id="copyBtn">COPY ALL</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
