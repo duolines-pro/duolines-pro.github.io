@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoLines Help | Interlinear Dual Language Creator & Web Translator</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <meta name="description" content="Learn how to use DuoLines to translate web pages with interlinear dual-language display. Fix API limits, setup personal keys, and master bilingual reading.">
+    <meta name="keywords" content="DuoLines Help, Interlinear Translation, Dual Language Creator, Web Page Translator, Language Learning, Fix ALL_KEYS_DEAD, Google Apps Script API, Parallel Text">
+    <link rel="stylesheet" href="style.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RV56TWS4PH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RV56TWS4PH');
+</script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">DuoLines Help Support</div>
+            <div>
+                <a href="#how-to" class="btn-top">User Guide</a>
+                <a href="https://duolines-pro.github.io/" class="btn-top" style="background: transparent; border: 1px solid var(--primary);">Main Page</a>
+            </div>
+        </nav>
+        <div class="hero">
+            <h1>Master <strong>Interlinear</strong> Dual Language Translation</h1>
+            <p>The ultimate guide to reading web pages in two languages simultaneously. Translate, learn in context, and setup unlimited private translations.</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="how-to">
+            <h2>📖 How to Use DuoLines</h2>
+            <p style="max-width: 800px; margin: 0 auto 2rem auto; color: #475569;">Transform the way you read the web. DuoLines preserves the source language and places the translation directly beneath or alongside it, making it the perfect tool for language learners, expats, and researchers.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3><strong>1. Install & Pin</strong></h3>
+                    <p>Add the DuoLines extension to your Chromium browser and pin it to your toolbar for quick access to your translation settings.</p>
+                </div>
+                <div class="card">
+                    <h3><strong>2. Highlight & Click</strong></h3>
+                    <p>Select any text on a webpage. Right-click to open the context menu and choose <b>"Translate with DuoLines"</b>.</p>
+                </div>
+                <div class="card">
+                    <h3><strong>3. Read & Export</strong></h3>
+                    <p>A clean popup will display the original lines followed by their translations. You can easily <b>Select All (Ctrl+A)</b> and copy to Anki, Word, or Notion.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" style="background: #f8fafc;">
+            <h2>🚀 Advanced Technical Features</h2>
+            <div class="grid">
+                <div class="card" style="text-align: left;">
+                    <h3 style="color: var(--primary);">Universal Compatibility</h3>
+                    <p>Works seamlessly across the web. Whether reading news, blog posts, or documentation, generate bilingual text instantly.</p>
+                </div>
+                <div class="card" style="text-align: left;">
+                    <h3 style="color: var(--primary);">Real-Time Progress</h3>
+                    <p>For longer texts, watch the translation happen chunk by chunk with a live progress bar. Never wonder when the process will finish.</p>
+                </div>
+                <div class="card" style="text-align: left;">
+                    <h3 style="color: var(--primary);">Manifest V3 Compliant</h3>
+                    <p>Built on the latest browser standards. Uses optimized background service workers to handle text without slowing down your browser.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="api-fix" style="background: #fff5f5;">
+            <h2>🔧 Fix "PERSONAL_KEYS" & API Limits</h2>
+            <p>If the community <strong>Google Translation API</strong> is overloaded, use your own <strong>Personal API Key</strong> for unlimited speed and high-volume translation:</p>
+            <div class="card" style="text-align: left; max-width: 800px; margin: 0 auto;">
+                <ol>
+                    <li>Sign in to <b>script.google.com</b> and start a <b>+ New Project</b>.</li>
+                    <li>Replace existing code with the block below.</li>
+                    <li>Click <b>Deploy > New deployment</b>. Select <b>Web app</b>.</li>
+                    <li>Execute as: <b>Me</b>, Access: <b>Anyone</b>. Copy the <b>Web App URL</b> and paste it into the DuoLines extension settings.</li>
+                </ol>
+                <pre id="scriptCode">function doPost(e) {
+  try {
+    var data = JSON.parse(e.postData.contents);
+    var targetLang = data.target || 'en';
+    var textToTranslate = data.q || '';
+
+    if (!textToTranslate) {
+      return createResponse({status: 'error', message: 'No text'});
+    }
+
+    var translated = LanguageApp.translate(textToTranslate, '', targetLang, {contentType: 'text'});
+
+    return createResponse({
+      status: 'success',
+      translatedText: translated
+    });
+
+  } catch (error) {
+
+    return createResponse({status: 'error', message: error.toString()});
+  }
+}
+
+function doGet(e) {
+  return createResponse({status: 'error', message: 'Ready to work. Use POST.'});
+}
+
+function createResponse(data) {
+  return ContentService.createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+</pre>
+                <button onclick="copyCode()" class="btn-download" style="width: 100%; border: none; cursor: pointer;">Copy Script Code</button>
+            </div>
+        </section>
+
+        <section id="languages">
+            <h2>🌍 Supported Languages</h2>
+            <p>Leverage the full power of translation. DuoLines supports <strong>all major global languages and rare dialects</strong>:</p>
+            <div class="lang-container" style="font-size: 0.85rem; color: var(--dark); opacity: 0.8; text-align: left; columns: 3; -webkit-columns: 3; -moz-columns: 3; gap: 20px; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                Afrikaans, Albanian (Shqip), Amharic (አማርኛ), Arabic (العربية), Armenian (Հայերեն), Assamese (অসমীয়া), Aymara (Aymar aru), Azerbaijani (Azərbaycan), Bambara (Bamanankan), Basque (Euskara), Belarusian (Беларуская), Bengali (বাংলা), Bhojpuri (भोजपुरी), Bosnian (Bosanski), Bulgarian (Български), Catalan (Català), Cebuano, Chinese Simp (简体中文), Chinese Trad (繁體中文), Corsican (Corse), Croatian (Hrvatski), Czech (Čeština), Danish (Dansk), Divehi (Dhivehi), Dogri (डोगरी), Dutch (Nederlands), English, Esperanto, Estonian (Eesti), Ewe (Eʋegbe), Filipino, Finnish (Suomi), French (Français), Frisian (Frysk), Galician (Galego), Georgian (ქართული), German (Deutsch), Greek (Ελληνικά), Guarani (Avañe'ẽ), Gujarati (ગુજરાતી), Haitian Creole (Kreyòl ayisyen), Hausa, Hawaiian (ʻŌlelo Hawaiʻi), Hebrew (עברית), Hindi (हिन्दी), Hmong (Hmoob), Hungarian (Magyar), Icelandic (Íslenska), Igbo, Ilocano, Indonesian (Indonesia), Irish (Gaeilge), Italian (Italiano), Japanese (日本語), Javanese (Jawa), Kannada (ಕನ್ನಡ), Kazakh (Qazaq), Khmer (ខ្មែរ), Kinyarwanda, Korean (한국어), Krio, Kurdish (Kurdî), Kyrgyz (Кыргызча), Lao (ລາວ), Latin (Latina), Latvian (Latviešu), Lingala, Lithuanian (Lietuvių), Luganda, Luxembourgish (Lëtzebuergesch), Macedonian (Македонски), Maithili (मैтили), Malagasy, Malay (Melayu), Malayalam (മലയാളം), Maltese (Malti), Maori (Māori), Marathi (मราठी), Meiteilon (Manipuri), Mizo, Mongolian (Монгол), Myanmar (Burmese), Nepali (नेपाली), Norwegian (Norsk), Nyanja (Chichewa), Odia (Oriya), Oromo (Oromoo), Pashto (پښتو), Persian (فарси), Polish (Polski), Portuguese (Português), Punjabi (ਪੰਜਾਬੀ), Quechua, Romanian (Română), Russian (Русский), Samoan, Sanskrit (संस्कृतम्), Scots Gaelic (Gàidhlig), Sepedi, Serbian (Српски), Sesotho, Shona (ChiShona), Sindhi (سنڌي), Sinhala (සිංහල), Slovak (Slovenčina), Slovenian (Slovenščina), Somali (Soomaali), Spanish (Español), Sundanese (Basa Sunda), Swahili (Kiswahili), Swedish (Svenska), Tajik (Тоҷикӣ), Tamil (தமிழ்), Tatar (Tatarça), Telugu (తెలుగు), Thai (ไทย), Tigrinya (ትግርኛ), Tsonga (Xitsonga), Turkish (Türkçe), Turkmen (Türkmençe), Twi, Ukrainian (Українська), Urdu (اردو), Uyghur (ئۇيغۇرչە), Uzbek (Oʻzbek), Vietnamese (Tiếng Việt), Welsh (Cymraeg), Xhosa (isiXhosa), Yiddish (ייִדיש), Yoruba (Èdè Yorùbá), Zulu (isiZulu).
+            </div>
+        </section>
+
+        <section id="privacy" style="text-align: left; max-width: 900px; margin: 0 auto;">
+            <h2 style="text-align: center; display: block; margin-bottom: 2rem;">🔒 Privacy-First Architecture & Permissions</h2>
+            <div class="card">
+                <p>Your data belongs to you. DuoLines processes translations through secure channels, and your personal settings are stored locally or synced via your secure browser profile.</p>
+                <ul style="margin-top: 15px; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>Storage:</strong> Required to save your UI theme (light/dark), language preferences, and personal Google Apps Script API keys.</li>
+                    <li><strong>script.google.com:</strong> Essential for connecting to Google Apps Script (both developer-provided and user-personal keys).</li>
+                    <li><strong>translate.googleapis.com:</strong> Used as a critical fallback mechanism to ensure the extension remains functional.</li>
+                    <li><strong>raw.githubusercontent.com:</strong> Required to fetch the latest configuration files and translation engine updates safely.</li>
+                </ul>
+                <p style="margin-top: 15px; font-size: 0.9em; color: #64748b;"><em>* The extension follows the principle of least privilege, requesting access only to the specific domains necessary for its operation.</em></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> DuoLines - Interlinear Dual Language Creator. All rights reserved.</p>
+        <p>Expert tool for <strong>Language Learning and Parallel Text Reading</strong>.</p>
+        <div style="margin-top: 20px;">
+            <a href="https://duolines-pro.github.io/" style="color: white; margin-right: 15px; font-weight: bold; text-decoration: none;">Main Page</a>
+            <a href="https://duolines-pro.github.io/help/index.html" style="color: white; font-weight: bold; text-decoration: none;">Support Development ☕</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
